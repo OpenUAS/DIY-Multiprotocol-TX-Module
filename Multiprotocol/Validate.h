@@ -126,7 +126,7 @@
 
 //Change/Force configuration if OrangeTX
 #ifdef ORANGE_TX
-	#undef ENABLE_PPM			// Disable PPM for OrangeTX module
+	//#undef ENABLE_PPM			// Disable PPM for OrangeTX module
 	#undef A7105_INSTALLED		// Disable A7105 for OrangeTX module
 	#undef A7105_CSN_pin
 	#undef CC2500_INSTALLED		// Disable CC2500 for OrangeTX module

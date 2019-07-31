@@ -149,14 +149,7 @@
    * If module is used in an serial enable TX, none of the knob fiddling is needed, this is for PPM TX only!
    * 
    */
-
-  //After it all works, these Protocols below should be re-added replacing DEVO debug ones:
-  //      3       {PROTO_DEVO     ,       DEVO_JR_HELI    ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       0               },
-  //      4       {PROTO_Q303     ,       CX10WD          ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       0               },
-  //      5       {PROTO_CFLIE    ,       NONE            ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       0               },
-  //      6       {PROTO_CX10     ,       DM007           ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       0               },
-  //      7       {PROTO_KN       ,       WLTOYS          ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       0               },
-  //      8       {PROTO_ESKY150  ,       NONE     
+   
   
   /* The NBR_BANKS+1 Since the bug code not taking this cusom config into account:
    *  error: too many initializers for 'const PPM_Parameters [14]'
@@ -167,21 +160,21 @@
   const PPM_Parameters My_PPM_prot[14*NBR_BANKS+1]={
   
   /* ******************************       BANK 1       ****************************** */
-  /*  Switch pos          Protocol                Sub protocol            RX_Num          Power           Auto Bind               Option  */
-  /*      1       */      {PROTO_FRSKYX   ,       EU_16           ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       40              },      // option=fine freq tuning
-  /*      2       */      {PROTO_DSM      ,       DSMX_11         ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       12              },      // option=number of channels
-  /*      3       */      {PROTO_DEVO     ,       DEVO_JR_HELI    ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       0               },       
-  /*      4       */      {PROTO_DEVO     ,       DEVO_JR_HELI    ,       0       ,       P_HIGH  ,       AUTOBIND        ,       0               },       
-  /*      5       */      {PROTO_DEVO     ,       NONE            ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       0               },
-  /*      6       */      {PROTO_DEVO     ,       NONE            ,       0       ,       P_HIGH  ,       AUTOBIND        ,       0               },
-  /*      7       */      {PROTO_DEVO     ,       4               ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       0               },
-  /*      8       */      {PROTO_DEVO     ,       4               ,       0       ,       P_HIGH  ,       AUTOBIND        ,       0               },
-  /*      9       */      {PROTO_WK2x01   ,       WK2801          ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       0               },
-  /*      10      */      {PROTO_V2X2     ,       NONE            ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       0               },
-  /*      11      */      {PROTO_DSM      ,       DSM2_22         ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       8               },      // option=number of channels
-  /*      12      */      {PROTO_DSM      ,       DSMX_22         ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       12              },      // option=number of channels
-  /*      13      */      {PROTO_FRSKYX   ,       CH_16           ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       40              },      // option=fine freq tuning
-  /*      14      */      {PROTO_FLYSKY   ,       Flysky          ,       0       ,       P_HIGH  ,       AUTOBIND        ,       0               },
+  /*  Switch pos     Protocol        Sub protocol          RX_Num             Power           Auto Bind               Option  */
+  /*      1       */{PROTO_FRSKYX   ,EU_16           ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       40              },      // option=fine freq tuning
+  /*      2       */{PROTO_DSM      ,DSMX_11         ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       12              },      // option=number of channels
+  /*      3       */{PROTO_Q303     ,CX10WD          ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       0               },
+  /*      4       */{PROTO_DEVO     ,DEVO_JR_HELI    ,       0       ,       P_HIGH  ,       AUTOBIND        ,       0               },
+  /*      5       */{PROTO_CFLIE    ,NONE            ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       0               },
+  /*      6       */{PROTO_CX10     ,DM007           ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       0               },
+  /*      7       */{PROTO_KN       ,WLTOYS          ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       0               },
+  /*      8       */{PROTO_ESKY150  ,NONE            ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       0               },    
+  /*      9       */{PROTO_WK2x01   ,WK2801          ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       0               },
+  /*      10      */{PROTO_V2X2     ,NONE            ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       0               },
+  /*      11      */{PROTO_DSM      ,DSM2_22         ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       8               },      // option=number of channels
+  /*      12      */{PROTO_DSM      ,DSMX_22         ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       12              },      // option=number of channels
+  /*      13      */{PROTO_FRSKYX   ,CH_16           ,       0       ,       P_HIGH  ,       NO_AUTOBIND     ,       40              },      // option=fine freq tuning
+  /*      14      */{PROTO_FLYSKY   ,Flysky          ,       0       ,       P_HIGH  ,       AUTOBIND        ,       0               },
   };
         
 #endif

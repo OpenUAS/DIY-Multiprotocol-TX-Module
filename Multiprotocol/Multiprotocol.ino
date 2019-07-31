@@ -23,7 +23,7 @@
 #include <avr/pgmspace.h>
 
 //#define DEBUG_PIN		// Use pin TX for AVR and SPI_CS for STM32 => DEBUG_PIN_on, DEBUG_PIN_off, DEBUG_PIN_toggle
-//#define DEBUG_SERIAL	// Only for STM32_BOARD, compiled with Upload method "Serial"->usart1, "STM32duino bootloader"->USB serial
+#define DEBUG_SERIAL	// Only for STM32_BOARD, compiled with Upload method "Serial"->usart1, "STM32duino bootloader"->USB serial
 
 #ifdef __arm__			// Let's automatically select the board if arm is selected
 	#define STM32_BOARD
@@ -38,7 +38,7 @@
 #include "_Config.h"
 
 //Personal config file
-#if defined(USE_MY_CONFIG)
+#if __has_include("_MyConfig.h") || defined(USE_MY_CONFIG)
 #include "_MyConfig.h"
 #endif
 
@@ -346,7 +346,7 @@ void setup()
 	#endif
 
 	//Wait for every component to start
-	delayMilliseconds(100);
+	delayMilliseconds(200);
 	
 	// Read status of bind button
 	if( IS_BIND_BUTTON_on )
@@ -357,21 +357,30 @@ void setup()
 	else
 		BIND_DONE;
 
+
+  delayMilliseconds(100);
+
 	// Read status of mode select binary switch
 	// after this mode_select will be one of {0000, 0001, ..., 1111}
 	#ifndef ENABLE_PPM
-		mode_select = MODE_SERIAL ;	// force serial mode
-	#elif defined STM32_BOARD
-		mode_select= 0x0F -(uint8_t)(((GPIOA->regs->IDR)>>4)&0x0F);
+		mode_select = MODE_SERIAL ;	// force serial mode 
 	#else
-		mode_select =
+	  #ifdef STM32_BOARD
+      mode_select=3;
+      delayMilliseconds(50);
+		  mode_select= 0x0F -(uint8_t)(((GPIOA->regs->IDR)>>4)&0x0F);
+     debugln("Protocol selection switch in STM32 reads as %d", mode_select);
+	  #else
+		  mode_select =
 			((PROTO_DIAL1_ipr & _BV(PROTO_DIAL1_pin)) ? 0 : 1) + 
 			((PROTO_DIAL2_ipr & _BV(PROTO_DIAL2_pin)) ? 0 : 2) +
 			((PROTO_DIAL3_ipr & _BV(PROTO_DIAL3_pin)) ? 0 : 4) +
 			((PROTO_DIAL4_ipr & _BV(PROTO_DIAL4_pin)) ? 0 : 8);
-	#endif
+     debugln("Protocol selection switch in ATMEL reads as %d", mode_select);
+	  #endif
+  #endif
 	//mode_select=1;
-    debugln("Protocol selection switch reads as %d", mode_select);
+   // debugln("Protocol selection switch reads as %d", mode_select);
 
 	#ifdef ENABLE_PPM
 		uint8_t bank=bank_switch();
